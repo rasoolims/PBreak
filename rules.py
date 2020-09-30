@@ -9,6 +9,11 @@ Paper reference by Bakhshizadeh and Tabibzadeh (2018): https://bit.ly/30nXgCz
 
 semi_space = "‌"
 
+def general_an_breaker(word):
+    if word.endswith("ان"):
+        return word[:-2] + "ون"
+    return word
+
 def verb_pron_break(word):
     """
     Based on 1-2-2 of paper.
@@ -345,6 +350,8 @@ def deterministic_break(word, tag):
         return "اون"
     if word == "آنها":
         return "اونا"
+    if word == "آنان":
+        return "اونا"
     if word == "آن‌ها":
         return "اونها"
     if word == "یک":
@@ -455,6 +462,9 @@ def break_words(words, tags):
         if tag in {"V"}:
             if random.random() < 0.8:
                 word = verb_pron_break(word)
+
+        if random.random() < 0.2:
+            word = general_an_breaker(word)
 
         if i>0 and word == "است" or word == "هست" and random.random() < 0.5:
             if broken_words[-1][-1] in {"ا", "و", "ه"}:
