@@ -29,6 +29,8 @@ def tokenize_mwes(words, tags):
 
 
 def word_list2sen(word_list, tags):
+    if len(word_list)==0:
+        return ""
     output = [word_list[0]]
     no_space_next = False
     for j, (word, tag) in enumerate(zip(word_list[1:], tags[1:])):
