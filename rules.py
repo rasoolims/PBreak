@@ -455,54 +455,58 @@ def break_words(words, tags):
     broken_words = []
     broken_tags = []
     for i, (word, tag) in enumerate(zip(words, tags)):
-        if random.random() < 0.8:
-            word = deterministic_break(word, tag)
-        elif random.random() < 0.3:
-            word = less_common_deterministic_break(word, tag)
-
-        if tag in {"N", "Ne"}:
-            if random.random() < 0.5:
-                word = plural_breaker(word)
-        if tag in {"V"}:
+        try:
             if random.random() < 0.8:
-                word = verb_pron_break(word)
+                word = deterministic_break(word, tag)
+            elif random.random() < 0.3:
+                word = less_common_deterministic_break(word, tag)
 
-        if random.random() < 0.2:
-            word = general_an_breaker(word)
+            if tag in {"N", "Ne"}:
+                if random.random() < 0.5:
+                    word = plural_breaker(word)
+            if tag in {"V"}:
+                if random.random() < 0.8:
+                    word = verb_pron_break(word)
 
-        if len(broken_words) > 0 and word == "است" or word == "هست" and random.random() < 0.5:
-            if broken_words[-1][-1] in {"ا", "و", "ه"}:
-                if broken_words[-1][-1] in {"ه"}:
-                    broken_words[-1] += semi_space + "س"
-                else:
-                    broken_words[-1] += "س"
-            else:
-                broken_words[-1] += "ه"
-        elif word == "را" and random.random() < 0.8:
-            if random.random() < 0.5 or len(broken_words) == 0:
-                word = "رو"
-                broken_words.append(word)
-                broken_tags.append(tag)
-            else:
+            if random.random() < 0.2:
+                word = general_an_breaker(word)
+
+            if len(broken_words) > 0 and word == "است" or word == "هست" and random.random() < 0.5:
                 if broken_words[-1][-1] in {"ا", "و", "ه"}:
                     if broken_words[-1][-1] in {"ه"}:
-                        if random.random() < 0.8:
-                            broken_words[-1] += semi_space + "رو"
-                        else:
-                            broken_words[-1] += semi_space + "ئو"
-                    elif broken_words[-1] == "او":
-                        broken_words[-1] += "نو"
-                    elif broken_words[-1][-1] in {"و"}:
-                        if random.random() < 0.8:
-                            broken_words[-1] += semi_space + "رو"
-                        else:
-                            broken_words[-1] += semi_space + "ئو"
+                        broken_words[-1] += semi_space + "س"
                     else:
-                        broken_words[-1] += "رو"
+                        broken_words[-1] += "س"
                 else:
-                    broken_words[-1] += "و"
-        else:
-            if len(word) > 0:
-                broken_words.append(word)
-                broken_tags.append(tag)
+                    broken_words[-1] += "ه"
+            elif word == "را" and random.random() < 0.8:
+                if random.random() < 0.5 or len(broken_words) == 0:
+                    word = "رو"
+                    broken_words.append(word)
+                    broken_tags.append(tag)
+                else:
+                    if broken_words[-1][-1] in {"ا", "و", "ه"}:
+                        if broken_words[-1][-1] in {"ه"}:
+                            if random.random() < 0.8:
+                                broken_words[-1] += semi_space + "رو"
+                            else:
+                                broken_words[-1] += semi_space + "ئو"
+                        elif broken_words[-1] == "او":
+                            broken_words[-1] += "نو"
+                        elif broken_words[-1][-1] in {"و"}:
+                            if random.random() < 0.8:
+                                broken_words[-1] += semi_space + "رو"
+                            else:
+                                broken_words[-1] += semi_space + "ئو"
+                        else:
+                            broken_words[-1] += "رو"
+                    else:
+                        broken_words[-1] += "و"
+            else:
+                if len(word) > 0:
+                    broken_words.append(word)
+                    broken_tags.append(tag)
+        except:
+            broken_words.append(word)
+            broken_tags.append(tag)
     return broken_words, broken_tags
