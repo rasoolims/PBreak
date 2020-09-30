@@ -4,3 +4,4 @@
 .idea/modules.xml
 .idea/PBreak.iml
 .idea/vcs.xml
+*.pyc
