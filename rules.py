@@ -220,7 +220,8 @@ def verb_pron_break(word):
         return word[:-1]
     elif len(word) > 4 and word.endswith("ید"):
         return word[:-1] + "ن"
-    elif len(word) > 4 and word.endswith("د") and not word.endswith("ود"):
+    elif len(word) > 4 and word.endswith("د") and not word.endswith("ود") and not word.endswith(
+            "اد") and not word.endswith("کرد"):
         return word[:-1] + "ه"
     return word
 
