@@ -361,6 +361,8 @@ def deterministic_break(word, tag):
         return "اونا"
     if word == "آنان":
         return "اونا"
+    if word == "آنجا":
+        return "اونجا"
     if word == "آن‌ها":
         return "اونها"
     if word == "یک":
