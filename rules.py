@@ -237,7 +237,7 @@ def plural_breaker(word):
         else:
             ending = word[-3:].replace("ا", "")
         word = word[:-3]
-    if len(word) > 3 and (word.endswith("ها") or word.endswith("های")):
+    if len(word) > 4 and (word.endswith("ها") or word.endswith("های")):
         if word.endswith("های"):
             ending = "ی"
             word = word[:-1]
