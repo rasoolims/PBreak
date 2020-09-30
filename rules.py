@@ -30,11 +30,23 @@ def plural_breaker(word):
 
     return word
 
+def deterministic_break(word):
+    if word == "اگر":
+        return "اگه"
+    if word == "مگر":
+        return "مگه"
+    if word == "دیگر":
+        return "دیگه"
+    if word == "آخر":
+        return "آخه"
+    return word
 
 def break_words(words, tags):
     broken_words = []
     broken_tags = []
     for i, (word, tag) in enumerate(zip(words, tags)):
+        if random.random() < 0.8:
+            word = deterministic_break(word)
         if tag in {"N", "Ne"}:
             if random.random() < 0.5:
                 word = plural_breaker(word)
