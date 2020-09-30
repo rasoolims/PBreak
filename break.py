@@ -13,7 +13,7 @@ def get_lm_option_parser():
 
 
 def word_list2sen(word_list, tags):
-    output = [words[0]]
+    output = [word_list[0]]
     no_space_next = False
     for j, (word, tag) in enumerate(zip(word_list[1:], tags[1:])):
         if tag == "PUNC":
