@@ -9,6 +9,213 @@ Paper reference by Bakhshizadeh and Tabibzadeh (2018): https://bit.ly/30nXgCz
 
 semi_space = "‌"
 
+def verb_pron_break(word):
+    """
+    Based on 1-2-2 of paper.
+    """
+    if word == "بیایم":
+        return "بیام"
+    if word == "بیایی":
+        return "بیای"
+    if word == "بیاید":
+        return "بیاد"
+    if word == "بیاییم":
+        return "بیایم"
+    if word == "بیایید":
+        return "بیایین"
+    if word == "بیایند":
+        return "بیان"
+    if word == "نیایم":
+        return "نیام"
+    if word == "نیایی":
+        return "نیای"
+    if word == "نیاید":
+        return "نیاد"
+    if word == "نیاییم":
+        return "نیایم"
+    if word == "نیایید":
+        return "نیایین"
+    if word == "نیایند":
+        return "نیان"
+
+    if word == "بخواه":
+        if random.random() < 0.8:
+            return "بخوا"
+        else:
+            return "بخا"
+
+    if word == "بخواهم":
+        if random.random() < 0.8:
+            return "بخوام"
+        else:
+            return "بخام"
+
+    if word == "بخواهی":
+        if random.random() < 0.8:
+            return "بخوای"
+        else: return "بخای"
+    if word == "بخواهد":
+        if random.random() < 0.8:
+            return "بخواد"
+        else:
+            return "بخاد"
+    if word == "بخواهیم":
+        if random.random() < 0.8:
+            return "بخوام"
+        else:
+            return "بخام"
+
+    if word == "بخواهید":
+        if random.random() < 0.8:
+            return "بخواین"
+        else:
+            return "بخاین"
+
+    if word == "بخواهند":
+        if random.random() < 0.8:
+            return "بخوان"
+        else:
+            return "بخان"
+
+    if word == "نخواهم":
+        if random.random() < 0.8:
+            return "نخوام"
+        else:
+            return "نخام"
+
+    if word == "نخوای":
+        if random.random() < 0.8:
+            return "نخواه"
+        else:
+            return "نخاه"
+
+    if word == "نخواد":
+        if random.random() < 0.8:
+            return "نخواد"
+        else:
+            return "نخاد"
+    if word == "نخواهیم":
+        if random.random() < 0.8:
+            return "نخوایم"
+        else:
+            return "نخایم"
+
+    if word == "نخواهید":
+        if random.random() < 0.8:
+            return "نخواین"
+        else:
+            return "نخاین"
+
+    if word == "نخواهند":
+        if random.random() < 0.8:
+            return "نخوان"
+        else:
+            return "نخان"
+
+    if word == "بشوم":
+        return "بشم"
+    if word == "بشوی":
+        return "بشی"
+    if word == "بشود":
+        return "بشه"
+    if word == "بشویم":
+        return "بشیم"
+    if word == "بشوید":
+        return "بشین"
+    if word == "بشوند":
+        return "بشن"
+    if word == "نشوم":
+        return "نشم"
+    if word == "نشوی":
+        return "نشی"
+    if word == "نشود":
+        return "نشه"
+    if word == "نشویم":
+        return "نشیم"
+    if word == "نشوید":
+        return "نشین"
+    if word == "نشوند":
+        return "نشن"
+
+    if word == "بدهم":
+        return "بدم"
+    if word == "بدهی":
+        return "بدی"
+    if word == "بدهد":
+        return "بده"
+    if word == "بدهیم":
+        return "بدیم"
+    if word == "بدهید":
+        return "بدین"
+    if word == "بدهند":
+        return "بدن"
+    if word == "ندهم":
+        return "ندم"
+    if word == "ندهی":
+        return "ندی"
+    if word == "ندهد":
+        return "نده"
+    if word == "ندهیم":
+        return "ندیم"
+    if word == "ندهید":
+        return "ندین"
+    if word == "ندهند":
+        return "ندن"
+
+    if word == "می‌شویند":
+        return "می‌شورن"
+    if word == "می‌شوییم":
+        return "می‌شوریم"
+    if word == "می‌شویی":
+        return "می‌شوری"
+    if word == "می‌شوید":
+        if random.random() < 0.1: # Very low chance
+            return "می‌شوره"
+
+    if word.startswith("ایست"):
+        word =  "و" + word
+    if "می‌اند" in word:
+        if random.random() < 0.8:
+            word = word.replace("می‌اند", "میند")
+    if "شمار" in word:
+        if random.random() < 0.8:
+            word = word.replace("شمار", "شمر")
+    if "سپار" in word:
+        if random.random() < 0.8:
+            word = word.replace("سپار", "سپر")
+    if "نشین" in word and not word.startswith("ن"):
+        if random.random() < 0.8:
+            word = word.replace("نشی", "شی")
+
+    if "نشست" in word and not word.startswith("ن"):
+        if random.random() < 0.1: # Very low chance
+            word = word.replace("نشست", "شست")
+
+    if  "گذا" in word:
+        if random.random() < 0.8:
+            word = word.replace("گذا", "ذا")
+        else:
+            word = word.replace("گذا", "زا")
+
+
+    if  word.startswith("آم"):
+        if random.random() < 0.7:
+            word = word.replace("آ", "او")
+
+    if "آور" in word:
+        word = word.replace("آور", "آر")
+    if "اور" in word:
+        word = word.replace("اور", "ار")
+
+    if word.endswith("خواهد"):
+        word = word[:-2]+"د"
+    elif len(word)>4 and word.endswith("ند"):
+        return word[:-1]
+    elif len(word)>4 and word.endswith("ید"):
+        return word[:-1]+"ن"
+    elif len(word)>4 and word.endswith("د") and not word.endswith("ود"):
+        return word[:-1]+"ه"
+    return word
 
 def plural_breaker(word):
     """
@@ -235,6 +442,9 @@ def break_words(words, tags):
         if tag in {"N", "Ne"}:
             if random.random() < 0.5:
                 word = plural_breaker(word)
+        if tag in {"V"}:
+            if random.random() < 0.8:
+                word = verb_pron_break(word)
 
         broken_words.append(word)
         broken_tags.append(tag)
