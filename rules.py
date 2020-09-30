@@ -9,10 +9,12 @@ Paper reference by Bakhshizadeh and Tabibzadeh (2018): https://bit.ly/30nXgCz
 
 semi_space = "‌"
 
+
 def general_an_breaker(word):
     if word.endswith("ان"):
         return word[:-2] + "ون"
     return word
+
 
 def verb_pron_break(word):
     """
@@ -58,7 +60,8 @@ def verb_pron_break(word):
     if word == "بخواهی":
         if random.random() < 0.8:
             return "بخوای"
-        else: return "بخای"
+        else:
+            return "بخای"
     if word == "بخواهد":
         if random.random() < 0.8:
             return "بخواد"
@@ -174,11 +177,11 @@ def verb_pron_break(word):
     if word == "می‌شویی":
         return "می‌شوری"
     if word == "می‌شوید":
-        if random.random() < 0.1: # Very low chance
+        if random.random() < 0.1:  # Very low chance
             return "می‌شوره"
 
     if word.startswith("ایست"):
-        word =  "و" + word
+        word = "و" + word
     if "می‌اند" in word:
         if random.random() < 0.8:
             word = word.replace("می‌اند", "میند")
@@ -193,17 +196,16 @@ def verb_pron_break(word):
             word = word.replace("نشی", "شی")
 
     if "نشست" in word and not word.startswith("ن"):
-        if random.random() < 0.1: # Very low chance
+        if random.random() < 0.1:  # Very low chance
             word = word.replace("نشست", "شست")
 
-    if  "گذا" in word:
+    if "گذا" in word:
         if random.random() < 0.8:
             word = word.replace("گذا", "ذا")
         else:
             word = word.replace("گذا", "زا")
 
-
-    if  word.startswith("آم"):
+    if word.startswith("آم"):
         if random.random() < 0.7:
             word = word.replace("آ", "او")
 
@@ -213,14 +215,15 @@ def verb_pron_break(word):
         word = word.replace("اور", "ار")
 
     if word.endswith("خواهد"):
-        word = word[:-2]+"د"
-    elif len(word)>4 and word.endswith("ند"):
+        word = word[:-2] + "د"
+    elif len(word) > 4 and word.endswith("ند"):
         return word[:-1]
-    elif len(word)>4 and word.endswith("ید"):
-        return word[:-1]+"ن"
-    elif len(word)>4 and word.endswith("د") and not word.endswith("ود"):
-        return word[:-1]+"ه"
+    elif len(word) > 4 and word.endswith("ید"):
+        return word[:-1] + "ن"
+    elif len(word) > 4 and word.endswith("د") and not word.endswith("ود"):
+        return word[:-1] + "ه"
     return word
+
 
 def plural_breaker(word):
     """
@@ -466,16 +469,16 @@ def break_words(words, tags):
         if random.random() < 0.2:
             word = general_an_breaker(word)
 
-        if i>0 and word == "است" or word == "هست" and random.random() < 0.5:
+        if len(broken_words) > 0 and word == "است" or word == "هست" and random.random() < 0.5:
             if broken_words[-1][-1] in {"ا", "و", "ه"}:
-                if broken_words[-1][-1] in { "ه"}:
+                if broken_words[-1][-1] in {"ه"}:
                     broken_words[-1] += semi_space + "س"
                 else:
-                    broken_words[-1] +=  "س"
+                    broken_words[-1] += "س"
             else:
                 broken_words[-1] += "ه"
         elif word == "را" and random.random() < 0.8:
-            if random.random()<0.5 or i==0:
+            if random.random() < 0.5 or len(broken_words) == 0:
                 word = "رو"
                 broken_words.append(word)
                 broken_tags.append(tag)
@@ -498,6 +501,7 @@ def break_words(words, tags):
                 else:
                     broken_words[-1] += "و"
         else:
-            broken_words.append(word)
-            broken_tags.append(tag)
+            if len(word) > 0:
+                broken_words.append(word)
+                broken_tags.append(tag)
     return broken_words, broken_tags
