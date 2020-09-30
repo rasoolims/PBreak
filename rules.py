@@ -184,6 +184,9 @@ def verb_pron_break(word):
 
     if word.startswith("ایست"):
         word = "و" + word
+    if "توان" in word:
+        if random.random() < 0.8:
+            word = word.replace("توان", "تون")
     if "می‌اند" in word:
         if random.random() < 0.8:
             word = word.replace("می‌اند", "میند")
