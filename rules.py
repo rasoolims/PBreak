@@ -222,9 +222,17 @@ def plural_breaker(word):
     Page 10 of the paper
     Converts "HA" or "A" for plurals
     """
-
+    ending = ""
+    if word.endswith("تان") or word.endswith("مان") or word.endswith("شان"):
+        ending = word[-3:].replace("ا", "و")
+        word = word[:-3]
+    elif word.endswith(semi_space + "ام") or word.endswith(semi_space + "ات") or word.endswith(semi_space + "اش"):
+        if word[-3] != "ه":
+            ending = word[-2:].replace("ا", "")
+        else:
+            ending = word[-3:].replace("ا", "")
+        word = word[:-3]
     if len(word) > 3 and (word.endswith("ها") or word.endswith("های")):
-        ending = ""
         if word.endswith("های"):
             ending = "ی"
             word = word[:-1]
@@ -235,7 +243,7 @@ def plural_breaker(word):
         if subword[-1] not in {"ا", "و", "ه"}:
             word = subword + "ا" + ending
 
-    return word
+    return word + ending
 
 
 def less_common_deterministic_break(word, tag):
