@@ -394,6 +394,8 @@ def deterministic_break(word, tag):
         return "چیه"
     if word == "حرام":
         return "حروم"
+    if word == "مرا":
+        return "منو"
     if word == "خانم":
         return "خانوم"
     if word == "خفقان":
@@ -446,6 +448,38 @@ def break_words(words, tags):
             if random.random() < 0.8:
                 word = verb_pron_break(word)
 
-        broken_words.append(word)
-        broken_tags.append(tag)
+        if i>0 and word == "است" or word == "هست" and random.random() < 0.5:
+            if broken_words[-1][-1] in {"ا", "و", "ه"}:
+                if broken_words[-1][-1] in { "ه"}:
+                    broken_words[-1] += semi_space + "س"
+                else:
+                    broken_words[-1] +=  "س"
+            else:
+                broken_words[-1] += "ه"
+        elif word == "را" and random.random() < 0.8:
+            if random.random()<0.5 or i==0:
+                word = "رو"
+                broken_words.append(word)
+                broken_tags.append(tag)
+            else:
+                if broken_words[-1][-1] in {"ا", "و", "ه"}:
+                    if broken_words[-1][-1] in {"ه"}:
+                        if random.random() < 0.8:
+                            broken_words[-1] += semi_space + "رو"
+                        else:
+                            broken_words[-1] += semi_space + "ئو"
+                    elif broken_words[-1] == "او":
+                        broken_words[-1] += "نو"
+                    elif broken_words[-1][-1] in {"و"}:
+                        if random.random() < 0.8:
+                            broken_words[-1] += semi_space + "رو"
+                        else:
+                            broken_words[-1] += semi_space + "ئو"
+                    else:
+                        broken_words[-1] += "رو"
+                else:
+                    broken_words[-1] += "و"
+        else:
+            broken_words.append(word)
+            broken_tags.append(tag)
     return broken_words, broken_tags
