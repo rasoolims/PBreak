@@ -172,6 +172,8 @@ def verb_pron_break(word):
 
     if word == "می‌شویند":
         return "می‌شورن"
+    if word == "می‌دهند":
+        return "می‌دن"
     if word == "می‌شوییم":
         return "می‌شوریم"
     if word == "می‌شویی":
