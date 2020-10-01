@@ -463,22 +463,22 @@ def break_words(words, tags):
     broken_tags = []
     for i, (word, tag) in enumerate(zip(words, tags)):
         try:
-            if random.random() < 0.8:
+            if random.random() < 0.9:
                 word = deterministic_break(word, tag)
-            elif random.random() < 0.3:
+            if random.random() < 0.5:
                 word = less_common_deterministic_break(word, tag)
 
             if tag in {"N", "Ne"}:
-                if random.random() < 0.5:
+                if random.random() < 0.9:
                     word = plural_breaker(word)
             if tag in {"V"}:
-                if random.random() < 0.8:
+                if random.random() < 0.95:
                     word = verb_pron_break(word)
 
-            if random.random() < 0.2:
+            if random.random() < 0.5:
                 word = general_an_breaker(word)
 
-            if len(broken_words) > 0 and word == "است" or word == "هست" and random.random() < 0.5:
+            if len(broken_words) > 0 and word == "است" or word == "هست" and random.random() < 0.9:
                 if broken_words[-1][-1] in {"ا", "و", "ه"}:
                     if broken_words[-1][-1] in {"ه"}:
                         broken_words[-1] += semi_space + "س"
@@ -486,7 +486,7 @@ def break_words(words, tags):
                         broken_words[-1] += "س"
                 else:
                     broken_words[-1] += "ه"
-            elif word == "را" and random.random() < 0.8:
+            elif word == "را" and random.random() < 0.9:
                 if random.random() < 0.5 or len(broken_words) == 0:
                     word = "رو"
                     broken_words.append(word)
