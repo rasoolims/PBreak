@@ -204,7 +204,7 @@ def verb_pron_break(word):
         if random.random() < 0.1:  # Very low chance
             word = word.replace("نشست", "شست")
 
-    if "گذا" in word:
+    if "گذا" in word and not word.startswith("گذا"):
         if random.random() < 0.8:
             word = word.replace("گذا", "ذا")
         else:
