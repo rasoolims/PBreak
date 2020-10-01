@@ -227,7 +227,7 @@ def verb_pron_break(word):
         return word[:-1] + "ن"
     elif len(word) > 4 and word.endswith("ود"):
         return word[:-2] + "ه"
-    elif len(word) > 4 and word.endswith("د") and  not word.endswith("اد") and not word.endswith("کرد"):
+    elif len(word) > 4 and word.endswith("د") and not word.endswith("اد") and not word.endswith("کرد"):
         return word[:-1] + "ه"
     return word
 
@@ -274,7 +274,7 @@ def less_common_deterministic_break(word, tag):
             return "اوس"
     if word == "ارواح":
         return "اروا"
-    if word == "در" and tag=="P":
+    if word == "در" and tag == "P":
         return "تو"
     if word == "انبر":
         return "امبر"
@@ -466,6 +466,15 @@ def break_words(words, tags):
     broken_tags = []
     for i, (word, tag) in enumerate(zip(words, tags)):
         try:
+            if "ه" + semi_space in word:
+                if random.random() < 0.5:
+                    word = word.replace("ه" + semi_space, "ه" + " ")
+            elif semi_space in word:
+                r = random.random()
+                if r < 0.5:
+                    word = word.replace(semi_space, " ")
+                elif r < 0.8:
+                    word = word.replace(semi_space, "")
             if random.random() < 0.9:
                 word = deterministic_break(word, tag)
             if random.random() < 0.5:
