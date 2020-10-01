@@ -273,6 +273,8 @@ def less_common_deterministic_break(word, tag):
             return "اوس"
     if word == "ارواح":
         return "اروا"
+    if word == "در" and tag=="P":
+        return "تو"
     if word == "انبر":
         return "امبر"
     if word == "پنبه":
