@@ -12,6 +12,9 @@ def get_lm_option_parser():
     parser.add_option("--input", dest="input_path", metavar="FILE", default=None)
     parser.add_option("--output", dest="output_path", metavar="FILE", default=None)
     parser.add_option("--output-split", dest="output_split_path", metavar="FILE", default=None)
+    parser.add_option("--diff", action="store_true", dest="diff",
+                      help="Only keep difference lines", default=False)
+    parser.add_option("--repeat", dest="repeat", type="int", default=1)
     return parser
 
 
@@ -30,7 +33,7 @@ def tokenize_mwes(words, tags):
 
 
 def word_list2sen(word_list, tags):
-    if len(word_list)==0:
+    if len(word_list) == 0:
         return ""
     output = [word_list[0]]
     no_space_next = False
@@ -58,20 +61,24 @@ if __name__ == "__main__":
     tagger = POSTagger(model='resources/postagger.model')
     normalizer = Normalizer()
 
-    with open(options.input_path, "r") as r,  open(options.output_split_path, "w") as os, open(options.output_path, "w") as w:
-        for i, line in enumerate(r):
-            sen = line.strip()
+    for _ in range(options.repeat):
+        with open(options.input_path, "r") as r, open(options.output_split_path, "w") as os, open(options.output_path,
+                                                                                                  "w") as w:
+            for i, line in enumerate(r):
+                sen = line.strip()
 
+                sen = normalizer.normalize(sen)
+                words = word_tokenize(sen)
+                orig_sen = " ".join(words).replace("_", " ") + "\n"
+                tagged_words = tagger.tag(words)
+                tags = list(map(lambda x: x[1], tagged_words))
+                words, tags = tokenize_mwes(words, tags)
+                broken_words, new_tags = break_words(words, tags)
+                broken_sen = " ".join(broken_words) + "\n"
+                if not options.diff or orig_sen != broken_sen:
+                    os.write(orig_sen)
+                    w.write(broken_sen)
 
-            sen = normalizer.normalize(sen)
-            words = word_tokenize(sen)
-            os.write(" ".join(words).replace("_", " ") + "\n")
-            tagged_words = tagger.tag(words)
-            tags = list(map(lambda x: x[1], tagged_words))
-            words, tags = tokenize_mwes(words, tags)
-            broken_words, new_tags = break_words(words, tags)
-            w.write(" ".join(broken_words) + "\n")
-
-            if i % 1000 == 0:
-                print(i, end="\r")
+                if i % 1000 == 0:
+                    print(i, end="\r")
     print("\nFinished")
