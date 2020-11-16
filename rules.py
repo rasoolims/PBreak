@@ -496,11 +496,11 @@ def less_common_deterministic_break(word, tag):
         word = word.replace("تان", "تون")
     if word.endswith("ان"):
         word = word.replace("ان", "ون")
-    if word.endswith("یم") and tag != "V":
+    if word.endswith("یم") and tag != "V" and random.random() < 0.4:
         word = word.replace("یم", "م")
-    if word.endswith("یت") and tag != "V":
+    if word.endswith("یت") and tag != "V" and random.random() < 0.4:
         word = word.replace("یت", "ت")
-    if word.endswith("یش"):
+    if word.endswith("یش") and random.random() < 0.4:
         word = word.replace("یش", "ش")
     return word
 
