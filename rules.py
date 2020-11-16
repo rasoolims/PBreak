@@ -379,7 +379,11 @@ def plural_breaker(word):
         if subword[-1] not in {"ا", "و", "ه"}:
             word = subword + "ا" + ending
 
-    return (word + ending).replace(semi_space, "")
+    if random.random() < 0.6:
+        return (word + ending).replace(semi_space, "")
+    else:
+        return (word + ending).replace(semi_space, " ")
+
 
 
 def less_common_deterministic_break(word, tag):
@@ -619,6 +623,8 @@ def break_words(words, tags):
     broken_words = []
     broken_tags = []
     for i, (word, tag) in enumerate(zip(words, tags)):
+        if word == "باشد":
+            print("HI!")
         try:
             if "ه" + semi_space in word:
                 if random.random() < 0.8:
