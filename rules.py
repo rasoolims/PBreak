@@ -476,6 +476,12 @@ def less_common_deterministic_break(word, tag):
 
 
 def deterministic_break(word, tag):
+    if "اًْ" in word:
+        if random.random() < 0.5:
+            word = word.replace("اً", "ا")
+        else:
+            word = word.replace("اً", "ن")
+
     if word == "اگر":
         return "اگه"
     if word == "مگر":
