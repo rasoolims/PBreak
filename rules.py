@@ -625,8 +625,6 @@ def break_words(words, tags):
     broken_words = []
     broken_tags = []
     for i, (word, tag) in enumerate(zip(words, tags)):
-        if word == "باشد":
-            print("HI!")
         try:
             if "ه" + semi_space in word:
                 if random.random() < 0.8:
