@@ -653,7 +653,9 @@ def break_words(words, tags):
             if random.random() < 0.8:
                 word = general_an_breaker(word)
 
-            if len(broken_words) > 0 and word == "من" and broken_words[-1] == "به" and random.random() < 0.9:
+            if len(broken_words) > 0 and word == "است" and broken_words[-1].endswith("ه") and tags[i-1]=="V" and random.random() < 0.3:
+                pass # omit word
+            elif len(broken_words) > 0 and word == "من" and broken_words[-1] == "به" and random.random() < 0.9:
                 broken_words[-1] = "بهم"
             elif len(broken_words) > 0 and word == "او" and broken_words[-1] == "به" and random.random() < 0.9:
                 broken_words[-1] = "بهش"
