@@ -342,7 +342,7 @@ def verb_pron_break(word):
     elif len(word) > 3 and word.endswith("ید"):
         return word[:-1] + "ن"
 
-    elif len(word) > 3 and word.endswith("ود") and  "بود" not in word:
+    elif len(word) > 3 and word.endswith("ود") and  "بود" not in word and  "نمود" not in word:
         return word[:-2] + "ه"
     elif len(word) > 3 and word.endswith("د") and not word.endswith("اد") and not word.endswith("کرد"):
         return word[:-1] + "ه"
