@@ -372,10 +372,6 @@ def plural_breaker(word):
         if word.endswith("های"):
             ending = "ی"
             word = word[:-1]
-        if word.endswith("هایی"):
-            ending = "یی"
-            word = word[:-2]
-
         subword = word[:-2]
         if subword[-1] == semi_space:
             subword = subword[:-1]
