@@ -314,6 +314,8 @@ def verb_pron_break(word):
         return word[:-3] + "ن"
     elif len(word) > 4 and word.endswith("یند"):
         return word[:-1] + "ه"
+    elif len(word) > 4 and word.endswith("نند"):
+        return word[:-1]
     elif len(word) > 4 and word.endswith("ند"):
         return word[:-1]
     elif len(word) > 4 and word.endswith("ویید"):
