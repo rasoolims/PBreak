@@ -310,6 +310,19 @@ def verb_pron_break(word):
         if random.random() < 0.8:
             word = word.replace("ان", "ون")
 
+    elif len(word) > 4 and word.endswith("هم"):
+        return word[:-2] + "م"
+    elif len(word) > 4 and word.endswith("هی"):
+        return word[:-2] + "ی"
+    elif len(word) > 4 and word.endswith("هد"):
+        return word[:-1]
+    elif len(word) > 4 and word.endswith("هیم"):
+        return word[:-3] + "یم"
+    elif len(word) > 4 and word.endswith("هید"):
+        return word[:-3] + "ید"
+    elif len(word) > 4 and word.endswith("هند"):
+        return word[:-3] + "ند"
+
     elif len(word) > 4 and word.endswith("وید"):
         return word[:-3] + "ن"
     elif len(word) > 4 and word.endswith("یند"):
