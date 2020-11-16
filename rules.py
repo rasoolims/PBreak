@@ -356,8 +356,6 @@ def plural_breaker(word):
     Page 10 of the paper
     Converts "HA" or "A" for plurals
     """
-    if semi_space in word:
-        return word.replace(semi_space, " ")
     ending = ""
     if word.endswith("تان") or word.endswith("مان") or word.endswith("شان"):
         ending = word[-3:].replace("ا", "و")
@@ -370,10 +368,14 @@ def plural_breaker(word):
         word = word[:-3]
 
 
-    if len(word) > 4 and (word.endswith("ها") or word.endswith("های")):
+    if len(word) > 4 and (word.endswith("ها") or word.endswith("های") or word.endswith("هایی")):
         if word.endswith("های"):
             ending = "ی"
             word = word[:-1]
+        if word.endswith("هایی"):
+            ending = "یی"
+            word = word[:-2]
+
         subword = word[:-2]
         if subword[-1] == semi_space:
             subword = subword[:-1]
@@ -383,9 +385,9 @@ def plural_breaker(word):
             return word.replace(semi_space, " ")
 
     if random.random() < 0.6:
-        return (word + ending).replace(semi_space, "")
+        return word.replace(semi_space, "")
     else:
-        return (word + ending).replace(semi_space, " ")
+        return word.replace(semi_space, " ")
 
 
 
