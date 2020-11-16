@@ -176,7 +176,7 @@ def verb_pron_break(word):
         return "نشن"
 
     if word == "روم":
-       return "برم"
+        return "برم"
 
     if word == "روی":
         return "بری"
@@ -185,7 +185,7 @@ def verb_pron_break(word):
     if word == "رویم":
         return "بریم"
     if word == "روید":
-       return "برید"
+        return "برید"
     if word == "روند":
         return "برن"
     if word == "بروم":
@@ -361,6 +361,10 @@ def plural_breaker(word):
         else:
             ending = word[-3:].replace("ا", "")
         word = word[:-3]
+
+    if (word.endswith(semi_space + "ها") or word.endswith(semi_space + "های") or word.endswith(semi_space + "هایی")):
+        return word
+
     if len(word) > 4 and (word.endswith("ها") or word.endswith("های")):
         if word.endswith("های"):
             ending = "ی"
