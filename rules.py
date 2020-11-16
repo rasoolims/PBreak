@@ -359,7 +359,7 @@ def plural_breaker(word):
         if subword[-1] not in {"ا", "و", "ه"}:
             word = subword + "ا" + ending
 
-    return word + ending
+    return (word + ending).replace(semi_space, "")
 
 
 def less_common_deterministic_break(word, tag):
