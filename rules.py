@@ -175,6 +175,44 @@ def verb_pron_break(word):
     if word == "نشوند":
         return "نشن"
 
+    if word == "روم":
+       return "برم"
+
+    if word == "روی":
+        return "بری"
+    if word == "رود":
+        return "بره"
+    if word == "رویم":
+        return "بریم"
+    if word == "روید":
+       return "برید"
+    if word == "روند":
+        return "برن"
+    if word == "بروم":
+        return "برم"
+    if word == "بروی":
+        return "بری"
+    if word == "برود":
+        return "بره"
+    if word == "برویم":
+        return "بریم"
+    if word == "بروید":
+        return "برین"
+    if word == "بروند":
+        return "برن"
+    if word == "نروم":
+        return "نرم"
+    if word == "نروی":
+        return "نری"
+    if word == "نرود":
+        return "نره"
+    if word == "نرویم":
+        return "نریم"
+    if word == "نروید":
+        return "نرین"
+    if word == "نروند":
+        return "نرن"
+
     if word == "بدهم":
         return "بدم"
     if word == "بدهی":
@@ -274,10 +312,17 @@ def verb_pron_break(word):
 
     elif len(word) > 4 and word.endswith("وید"):
         return word[:-3] + "ن"
+    elif len(word) > 4 and word.endswith("یند"):
+        return word[:-1] + "ه"
     elif len(word) > 4 and word.endswith("ند"):
         return word[:-1]
+    elif len(word) > 4 and word.endswith("ویید"):
+        return word[:-4] + "ید"
+    elif len(word) > 4 and word.endswith("یید"):
+        return word[:-2] + "د"
     elif len(word) > 4 and word.endswith("ید"):
         return word[:-1] + "ن"
+
     elif len(word) > 4 and word.endswith("ود"):
         return word[:-2] + "ه"
     elif len(word) > 4 and word.endswith("د") and not word.endswith("اد") and not word.endswith("کرد"):
