@@ -11,7 +11,7 @@ semi_space = "‌"
 
 
 def general_an_breaker(word):
-    if "ان" in word and not word.startswith("ان"):
+    if "ان" in word and  "اند" not in word and not word.startswith("ان"):
         word = word.replace("ان", "ون")
     return word
 
