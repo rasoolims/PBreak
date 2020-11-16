@@ -20,6 +20,8 @@ def verb_pron_break(word):
     """
     Based on 1-2-2 of paper.
     """
+    if word.endswith("کند"):
+        return  word[:-1] + "ه"
     if word == "بیایم":
         return "بیام"
     if word == "بیایی":
