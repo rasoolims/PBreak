@@ -365,10 +365,13 @@ def plural_breaker(word):
     if (word.endswith(semi_space + "ها") or word.endswith(semi_space + "های") or word.endswith(semi_space + "هایی")):
         return word
 
-    if len(word) > 4 and (word.endswith("ها") or word.endswith("های")):
+    if len(word) > 4 and (word.endswith("ها") or word.endswith("های")  or word.endswith("هایی")):
         if word.endswith("های"):
             ending = "ی"
             word = word[:-1]
+        if word.endswith("هایی"):
+            ending = "یی"
+            word = word[:-2]
 
         subword = word[:-2]
         if subword[-1] == semi_space:
