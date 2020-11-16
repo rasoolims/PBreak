@@ -364,8 +364,6 @@ def plural_breaker(word):
             ending = word[-3:].replace("ا", "")
         word = word[:-3]
 
-    if (word.endswith(semi_space + "ها") or word.endswith(semi_space + "های") or word.endswith(semi_space + "هایی")):
-        return word
 
     if len(word) > 4 and (word.endswith("ها") or word.endswith("های") or word.endswith("هایی")):
         if word.endswith("های"):
@@ -381,7 +379,7 @@ def plural_breaker(word):
         if subword[-1] not in {"ا", "و", "ه"}:
             word = subword + "ا" + ending
 
-    return (word + ending)
+    return (word + ending).replace(semi_space, "")
 
 
 def less_common_deterministic_break(word, tag):
