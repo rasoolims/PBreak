@@ -378,6 +378,8 @@ def plural_breaker(word):
             subword = subword[:-1]
         if subword[-1] not in {"ا", "و", "ه"}:
             word = subword + "ا" + ending
+        else:
+            return word.replace(semi_space, " ")
 
     if random.random() < 0.6:
         return (word + ending).replace(semi_space, "")
