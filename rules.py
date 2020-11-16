@@ -20,6 +20,9 @@ def verb_pron_break(word):
     """
     Based on 1-2-2 of paper.
     """
+    if "باید" in word:
+        return word
+
     if word.endswith("کند"):
         return  word[:-1] + "ه"
     if word == "بیایم":
@@ -402,6 +405,9 @@ def less_common_deterministic_break(word, tag):
             return "اوسا"
         else:
             return "اوس"
+    if word == "باید":
+        if random.random() < 0.2:
+            return "باهاس"
     if word == "ارواح":
         return "اروا"
     if word == "در" and tag == "P" and random.random() < 0.5:
