@@ -181,6 +181,12 @@ def verb_pron_break(word):
         return "نشن"
     if word.endswith("باشد"):
         return word.replace("باشد", "باشه")
+    if "شوم" in word:
+        return word.replace("شوم", "شم")
+    if "شوی" in word:
+        return word.replace("شوی", "شی")
+    if "شون" in word:
+        return word.replace("شون", "شن")
 
     if word == "روم":
         return "برم"
@@ -229,7 +235,11 @@ def verb_pron_break(word):
     if word == "بدهیم":
         return "بدیم"
     if word == "بدهید":
-        return "بدین"
+        if random.random()<0.5:
+            return "بدین"
+        else:
+            return "بدید"
+
     if word == "بدهند":
         return "بدن"
     if word == "ندهم":
@@ -297,7 +307,7 @@ def verb_pron_break(word):
     if word.endswith("خواهد"):
         word = word[:-2] + "د"
 
-    if "خواه" in word:
+    if "خواه" in word and random.random() < 0.2:
         if random.random() < 0.8:
             word = word.replace("خواه", "خوا")
         else:
