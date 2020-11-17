@@ -679,7 +679,7 @@ def break_words(words, tags):
                 broken_words[-1] = "بهت"
             elif len(broken_words) > 0 and word == "شما" and broken_words[-1] == "به" and random.random() < 0.9:
                 broken_words[-1] = "بهت"
-            elif len(broken_words) > 0 and broken_words[-1] == "به" and random.random() < 0.99:
+            elif len(broken_words) > 0 and broken_words[-1] == "به" and random.random() < 0.4:
                 broken_words[-1] = "ب" + word
 
             elif len(broken_words) > 0 and word == "است" or word == "هست" and random.random() < 0.99:
