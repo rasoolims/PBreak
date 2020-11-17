@@ -692,7 +692,7 @@ def break_words(words, tags):
                 broken_words[-1] += "را"
             elif len(broken_words) > 0 and word == "را" and random.random() < 0.1:
                 broken_words[-1] += "رو"
-            elif len(broken_words) > 0 and broken_words[-1][-1] in {"ا", "و", "ی"} and random.random() < 0.1:
+            elif len(broken_words) > 0 and broken_words[-1][-1] in {"ا", "و"} and random.random() < 0.1:
                 broken_words[-1] += word
             elif len(broken_words) > 0 and word == "هم" and random.random() < 0.3:
                 broken_words[-1] += "م"
