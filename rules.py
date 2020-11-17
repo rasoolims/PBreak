@@ -22,7 +22,10 @@ def verb_pron_break(word):
     """
     if "باید" in word:
         return word
-
+    if "گوی" in word:
+        word = word.replace("گوی", "گ")
+    if word.endswith("شد"):
+        return  word
     if word.endswith("کند"):
         return  word[:-1] + "ه"
     if word == "بیایم":
@@ -420,12 +423,22 @@ def less_common_deterministic_break(word, tag):
     if word == "باید":
         if random.random() < 0.2:
             return "باهاس"
+    if word == "رفت":
+        if random.random() < 0.2:
+            return "رف"
+    if word == "اینقدر":
+        if random.random() < 0.2:
+            return "اینقد"
+    if "برای" in word:
+        if random.random() < 0.2:
+            return "برا"
     if word == "ارواح":
         return "اروا"
     if word == "در" and tag == "P" and random.random() < 0.5:
         return "تو"
     if word == "به" and tag == "P" and random.random() < 0.2:
         return "ب"
+
     if word == "که" and random.random() < 0.3:
         return "ک"
     if word == "انبر":
@@ -515,9 +528,9 @@ def less_common_deterministic_break(word, tag):
         word = word.replace("تان", "تون")
     if word.endswith("ان"):
         word = word.replace("ان", "ون")
-    if word.endswith("یم") and tag != "V" and random.random() < 0.4:
+    if word.endswith("یم")  and random.random() < 0.4:
         word = word.replace("یم", "م")
-    if word.endswith("یت") and tag != "V" and random.random() < 0.4:
+    if word.endswith("یت") and random.random() < 0.4:
         word = word.replace("یت", "ت")
     if word.endswith("یش") and random.random() < 0.4:
         word = word.replace("یش", "ش")
@@ -549,6 +562,8 @@ def deterministic_break(word, tag):
         return "اونجا"
     if word == "آن‌ها":
         return "اونها"
+    if word == "یک" and random.random() < 0.2:
+        return "ی"
     if word == "یک":
         return "یه"
     if word == "آتش":
@@ -578,7 +593,7 @@ def deterministic_break(word, tag):
     if word == "تمام":
         return "تموم"
     if word == "توی":
-        return "در"
+        return "تو"
     if word == "روی":
         return "رو"
     if word == "تومان":
@@ -673,6 +688,14 @@ def break_words(words, tags):
 
             if len(broken_words) > 0 and word == "است" and broken_words[-1].endswith("ه") and tags[i-1]=="V" and random.random() < 0.3:
                 pass # omit word
+            elif len(broken_words) > 0 and word == "را" and random.random() < 0.1:
+                broken_words[-1] += "را"
+            elif len(broken_words) > 0 and word == "را" and random.random() < 0.1:
+                broken_words[-1] += "رو"
+            elif len(broken_words) > 0 and broken_words[-1][-1] in {"ا","و","ی"} and random.random() < 0.1:
+                broken_words[-1] += word
+            elif len(broken_words) > 0 and word == "هم" and random.random() < 0.3:
+                broken_words[-1] += "م"
             elif len(broken_words) > 0 and word == "من" and broken_words[-1] == "به" and random.random() < 0.9:
                 broken_words[-1] = "بهم"
             elif len(broken_words) > 0 and word == "او" and broken_words[-1] == "به" and random.random() < 0.9:
