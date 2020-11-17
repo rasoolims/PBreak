@@ -326,10 +326,6 @@ def verb_pron_break(word):
         else:
             word = word.replace("خوان", "خان")
 
-    if "ان" in word:
-        if random.random() < 0.8:
-            word = word.replace("ان", "ون")
-
     elif len(word) > 3 and word.endswith("هم"):
         return word[:-2] + "م"
     elif len(word) > 3 and word.endswith("هی"):
