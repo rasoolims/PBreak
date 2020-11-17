@@ -352,7 +352,7 @@ def verb_pron_break(word):
         return word[:-4] + "ید"
     elif len(word) > 3 and word.endswith("یید"):
         return word[:-2] + "د"
-    elif len(word) > 3 and word.endswith("ید"):
+    elif len(word) > 3 and word.endswith("ید") and (word.startswith("می") or word.startswith("نمی")):
         if random.random() < 0.5:
             return word[:-1] + "ن"
 
