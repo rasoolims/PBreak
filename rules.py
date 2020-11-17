@@ -369,6 +369,8 @@ def plural_breaker(word):
     Page 10 of the paper
     Converts "HA" or "A" for plurals
     """
+    if semi_space in word:
+        return word
     ending = ""
     if word.endswith("تان") or word.endswith("مان") or word.endswith("شان"):
         ending = word[-3:].replace("ا", "و")
