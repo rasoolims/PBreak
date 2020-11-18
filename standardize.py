@@ -10,16 +10,17 @@ if __name__ == "__main__":
     with open(options.input_path, "r") as r, open(options.output_path, "w") as w:
         for i, line in enumerate(r):
             sen = line.strip()
-            s = standardizer.normalize(sen)
-            if len(s)==1:
-                s = s[0]
-            while True:
-                if len(s)>1 and isinstance(s[0], list):
-                    s = list(itertools.chain(*s))
-                else:
-                    break
+            st_l = standardizer.normalize(sen)
+            changed = []
 
-            sen = " ".join(s).replace("_", " ")
+            for s in st_l:
+                for word_l in s:
+                    if isinstance(word_l, list):
+                        changed.append(word_l[0])
+                    else:
+                        changed.append(word_l)
+
+            sen = " ".join(changed).replace("_", " ")
             w.write(sen + "\n")
             print(i, end="\r")
     print("\nFinished")
