@@ -188,6 +188,26 @@ def verb_pron_break(word):
         return "نشین"
     if word == "نشوند":
         return "نشن"
+
+    if word == "بایست":
+        return "وایسا"
+    if word == "بایستید":
+        return "وایسید"
+    if word == "بایستم":
+        return "وایسم"
+    if word == "بایستند":
+        return "وایسن"
+    if word == "بایستیم":
+        return "وایسیم"
+    if word == "می‌ایستم":
+        return "وامیسم"
+    if word == "می‌ایستی":
+        return "وامیسی"
+    if word == "می‌ایستید":
+        return "وامیسین"
+    if word == "می‌ایستند":
+        return "وامیسن"
+
     if word.endswith("باشد"):
         return word.replace("باشد", "باشه")
     if "شوم" in word:
@@ -416,6 +436,8 @@ def less_common_deterministic_break(word, tag):
             return "آ"
         else:
             return "آق"
+    if word == "ایستاده":
+        return "وایساده"
     if word == "استاد":
         if random.random() < 0.5:
             return "اوسا"
@@ -449,10 +471,6 @@ def less_common_deterministic_break(word, tag):
         return "پمبه"
     if word == "پوست":
         return "پوس"
-    if word == "بایست" and tag == "V":
-        return "وایسا"
-    if  "ایست" in word and tag == "V":
-        return word.replace("ایست", "وایس")
     if word == "پس" and random.random() < 0.2:
         if random.random() < 0.5:
             return "پ"
