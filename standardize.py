@@ -19,7 +19,7 @@ if __name__ == "__main__":
                 else:
                     break
 
-            sen = " ".join(s)
+            sen = " ".join(s).replace("_", " ")
             w.write(sen + "\n")
             print(i, end="\r")
     print("\nFinished")
