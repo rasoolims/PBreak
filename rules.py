@@ -22,8 +22,14 @@ def verb_pron_break(word):
     """
     if "باید" in word:
         return word
+    if "آی" in word:
+        word = word.replace("آی", "آ")
     if "گوی" in word:
         word = word.replace("گوی", "گ")
+    if "گوئ" in word:
+        word = word.replace("گوئ", "گ")
+    if "روی" in word:
+        word = word.replace("روی", "ری")
     if word.endswith("شد"):
         return word
     if word.endswith("کند"):
@@ -433,7 +439,8 @@ def less_common_deterministic_break(word, tag):
         return "تو"
     if word == "به" and tag == "P" and random.random() < 0.2:
         return "ب"
-
+    if word == "او" and random.random() < 0.2:
+        return "اون"
     if word == "که" and random.random() < 0.3:
         return "ک"
     if word == "انبر":
@@ -442,6 +449,10 @@ def less_common_deterministic_break(word, tag):
         return "پمبه"
     if word == "پوست":
         return "پوس"
+    if word == "بایست" and tag == "V":
+        return "وایسا"
+    if  "ایست" in word and tag == "V":
+        return word.replace("ایست", "وایس")
     if word == "پس" and random.random() < 0.2:
         if random.random() < 0.5:
             return "پ"
