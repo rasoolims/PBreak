@@ -467,6 +467,10 @@ def less_common_deterministic_break(word, tag):
         return "ک"
     if word == "انبر":
         return "امبر"
+    if word == "بالای" and random.random() < 0.3:
+        return "رو"
+    if word == "بالای" and random.random() < 0.3:
+        return "روی"
     if word == "پنبه":
         return "پمبه"
     if word == "پوست":
