@@ -711,7 +711,7 @@ def break_words(words, tags):
                 if random.random() < 0.99:
                     word = verb_pron_break(word)
 
-            if random.random() < 0.4:
+            if random.random() < 0.2:
                 word = general_an_breaker(word)
 
             if len(broken_words) > 0 and word == "است" and broken_words[-1].endswith("ه") and tags[
